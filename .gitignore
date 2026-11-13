@@ -1,0 +1,19 @@
+# UiPath generated files
+.local/
+.screenshots/
+*.user
+*.nupkg
+bin/
+obj/
+logs/
+_packages/
+
+# Runtime-only files (sample Office outputs in Output folders remain publishable)
+**/Output/*.log
+**/Output/*.tmp
+**/Output/.runtime/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiwb="http://schemas.uipath.com/workflow/activities/web">
+  <Sequence DisplayName="Smart Office Automation System" sap:VirtualizedContainerService.HintSize="800,500">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="outputFolder" Default="Output" />
+      <Variable x:TypeArguments="x:String" Name="sourceUrl" Default="https://example.com" />
+      <Variable x:TypeArguments="x:String" Name="status" />
+    </Sequence.Variables>
+    <ui:LogMessage Level="Info" Message="Smart Office Automation started." />
+    <ui:InvokeWorkflowFile DisplayName="1. Browser Automation" WorkflowFileName="WorkflowsBrowserAutomation.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Url">[sourceUrl]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile DisplayName="2. Excel Automation" WorkflowFileName="WorkflowsExcelAutomation.xaml">
+      <ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="in_OutputFolder">[outputFolder]</InArgument></ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile DisplayName="3. PowerPoint Automation" WorkflowFileName="WorkflowsPowerPointAutomation.xaml">
+      <ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="in_OutputFolder">[outputFolder]</InArgument></ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile DisplayName="4. Word Automation" WorkflowFileName="WorkflowsWordAutomation.xaml">
+      <ui:InvokeWorkflowFile.Arguments><InArgument x:TypeArguments="x:String" x:Key="in_OutputFolder">[outputFolder]</InArgument></ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:LogMessage Level="Info" Message="Integrated workflow completed. Excel data was used to create the presentation and report." />
+  </Sequence>
+</Activity>
